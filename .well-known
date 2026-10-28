@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.username.wingman",
+        "sha256_cert_fingerprints": ["AD:A1:AC:B4:0B:1E:81:EF:14:A6:6E:27:66:4B:83:FC:18:C1:7A:A7:D6:9B:62:30:79:58:5C:63:54:51:3F:22"]
+      }
+    }]
