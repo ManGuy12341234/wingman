@@ -1,0 +1,22 @@
+const C = "wingman-v2";
+const ASSETS = ["./", "index.html", "style.css", "app.js", "manifest.json", "icon-192.png", "icon-512.png"];
+self.addEventListener("install", e => {
+  // A missing file must never break installation.
+  e.waitUntil(caches.open(C).then(c => Promise.all(ASSETS.map(a => c.add(a).catch(() => {})))));
+  self.skipWaiting();
+});
+self.addEventListener("activate", e => {
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== C).map(k => caches.delete(k)))));
+  self.clients.claim();
+});
+// Network first, cache as offline fallback. Never cache URLs with a query string (shared text lives there).
+self.addEventListener("fetch", e => {
+  const u = new URL(e.request.url);
+  if (e.request.method !== "GET" || u.origin !== location.origin) return;
+  e.respondWith(
+    fetch(e.request).then(r => {
+      if (!u.search && r.ok) { const cp = r.clone(); caches.open(C).then(c => c.put(e.request, cp)); }
+      return r;
+    }).catch(() => caches.match(e.request, { ignoreSearch: true }))
+  );
+});

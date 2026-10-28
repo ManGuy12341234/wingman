@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7c3aed">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Wingman – text coach</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header><h1>💬 Wingman</h1><button id="cog" class="ghost" aria-label="Settings">⚙️</button></header>
+
+  <section id="settings" class="card" hidden>
+    <h2>Your API key</h2>
+    <p class="sub">Get one at console.anthropic.com. It’s saved only on this device and sent only to Anthropic. Setting a monthly spend limit there is a good idea.</p>
+    <input id="key" type="password" placeholder="sk-ant-…" autocomplete="off">
+    <button id="save" class="go">Save</button>
+  </section>
+
+  <section class="card">
+    <h2>What did she send?</h2>
+    <p class="sub">Copy her message in WhatsApp, then tap Paste. You can also share text to Wingman from other apps.</p>
+    <textarea id="msg" placeholder="e.g. “haha you’re funny. what are you up to this weekend?”"></textarea>
+    <div class="row">
+      <button id="paste" class="chip" type="button">📋 Paste</button>
+      <button id="shot" class="chip" type="button">📷 Screenshot</button>
+      <button id="clear" class="chip" type="button">Clear</button>
+      <input id="shotIn" type="file" accept="image/*" hidden>
+      <span id="shotName" class="sub"></span>
+    </div>
+    <div class="row" id="tones" role="group" aria-label="Tone"></div>
+    <button id="go" class="go" type="button">Read it</button>
+    <div id="res" aria-live="polite"></div>
+  </section>
+
+  <details class="card">
+    <summary>Quick rules that always work</summary>
+    <ul>
+      <li>Match her energy and length. Don’t send paragraphs to a one-liner.</li>
+      <li>Ask one real question about her, then share something about you.</li>
+      <li>Suggest a specific, low-pressure plan: “coffee Thursday?” beats “we should hang out”.</li>
+      <li>Don’t double-text in a panic. Give her room to reply.</li>
+      <li>If she’s unsure or says no, be gracious and move on. That’s attractive too.</li>
+    </ul>
+  </details>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
